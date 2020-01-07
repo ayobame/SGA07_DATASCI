@@ -1,0 +1,46 @@
+Question 1:
+What is difference between Exploratory Data Analysis and Predictive Data Analysis
+Predictive analytics is the use of data, statistical algorithms and machine learning techniques to identify the likelihood of future outcomes based on historical data. The goal is to go beyond knowing what has happened to providing a best assessment of what will happen in the future. Common uses include: detecting fraud, optimizing marketing campaigns, improving operations, reducing risk.
+Exploratory Data Analysis (EDA) is an approach to analysing datasets to summarize their main characteristics, often with visual methods.
+Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to discover patterns, to spot anomalies, to test hypothesis and to check assumptions with the help of summary statistics and graphical representations.
+It is a good practice to understand the data first and try to gather as many insights from it. EDA is all about making sense of data in hand, before getting them dirty with it.
+
+Question 2:
+How would you define the role of a Data Scientist in Product Development Team?
+The role of a data scientist in product development will include the following:
+Product viability
+A variety of analytics tools can verify product concepts, helping developers test, learn, adjust and retest to speed up the product design and launch process.
+
+Informed product decision-making
+Analytics has made decision-making more objective, reliable, and faster. While intuition based on experience and expertise can still play a valuable role in product development, it can – and should –take a backseat to objective analytics.
+
+Product progress measurement
+Product analytics can inform team members about which features are working and which are not. Analytics plays a critical role in creating an accurate product roadmap that can tell you where your product is currently, where you want it to go (what you want it to be), and how to get it there.
+
+User experience insights
+Product teams can use analytics to understand why users are buying their product and how they are using it.
+
+Product development inspiration
+Analytics can jump-start innovation and help an existing product remain viable for an extended period of time. Quantitative analytics, used in conjunction with qualitative techniques, can provide a more holistic view of a product to help product management teams make the kind of focused improvements and adjustments that will help maintain that product’s value and improve its longevity.
+
+Question 3 :
+
+Outline the various phases of a typical data science methodology
+Business understanding
+Analytic approach
+Data requirements
+Data collection
+Data understanding
+Modeling
+Evaluation
+Deployment
+Data preparation
+Feedback
+
+Question 4:
+Mention 4 tools that a data scientist can rely on to effectively deliver his/her work
+
+1.	Tableau
+2.	Power BI
+3.	Python
+4.	Tensorflow
