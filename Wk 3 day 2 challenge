@@ -1,0 +1,51 @@
+## Adeyeye Ayobami
+
+
+#Question 1: 'https://drive.google.com/open?id=11LTD4G_eQeNNyM6CR7MoR4JMBGDVOOBV'
+
+
+#Question 2 ##What is the difference between R and Python?
+  ### I will give the difference in 5 parameters:
+  1.Objective
+  2.Primary User
+  3. Learning curve
+  4. IDE
+  5. Disadvantages
+
+  Objective
+  R: Data analysis and statistics
+  Python: Deployment and production
+
+  Primary User
+  R: Scholar and R&D
+  Python: Programmers and developers
+
+  Learning curve
+  R: Difficult at the beginning
+  Python: Linear and smooth
+
+  IDE
+  R: Rstudio
+  Python: Spyder, Ipthon Notebook
+
+  Disadvantages
+  R: Slow High Learning curve Dependencies between library
+  Python: Not as many libraries as R
+
+#Question 3 ##What is the difference between Functional and Event-based programming
+
+###Functional programming: Treats computation as the evaluation of mathematical functions avoiding state and mutable data
+    Main: Lambda calculus, compositionality, formula, recursion, referential transparency, no side effects
+    Related Paradigm: Declarative
+    Examples:  Kotlin, Lisp, Python, R, Ruby, Scala, SequenceL, Standard ML, JavaScript, Elm, Wolfram Language
+
+Event-based programming: Control flow is determined mainly by events, such as mouse clicks or interrupts including timer
+    Main: Main loop, event handlers, asynchronous processes
+    Related Paradigm: Procedural, dataflow
+    Examples: JavaScript, ActionScript, Visual Basic, Elm
+
+#Question 4 ##What do you understand to be ethical hacking
+Ethical hacking and ethical hacker are terms used to describe hacking performed by a company or individual to help identify
+potential threats on a computer or network.
+An ethical hacker attempts to bypass system security and search for any weak points that could be exploited by malicious hackers.
+This information is then used by the organization to improve the system security, to minimize or eliminate any potential attacks
