@@ -1,0 +1,34 @@
+---
+title: "Data storage, measurement and storage"
+author: "Awhy"
+date: "14/01/2020"
+output: pdf_document
+---
+
+``` {r, echo=FALSE}
+
+
+
+HumanInteractions <- c('Genotype', 'Temperature', 'Socio-economic status', 'Gender', 'Income level', 'Credit score', 'Race', 'Satisfaction rating', 'Weight', 'Political party')
+
+## attribute
+
+Genotype <- c('AA')
+Temperature <- c('22 degrees celsuis')
+SocioEconomicStatus <- c('Rich')
+Gender <- c('Trans')
+IncomeLevel <- c('Mid-range')
+CreditScore <- c('Very Good')
+Race <- c('Black')
+SatisfactionRating <- c('Satisfied') 
+Weight <- c(150)
+PoliticalParty <- c('Republican')
+
+HumanAttribute <- c(Genotype, Temperature, SocioEconomicStatus, Gender, IncomeLevel, CreditScore, 
+                    Race, SatisfactionRating, Weight, PoliticalParty)
+
+AttributeDataFrame <- data.frame(HumanInteractions,HumanAttribute)
+
+
+
+```
