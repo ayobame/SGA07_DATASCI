@@ -1,5 +1,5 @@
 ---
-title: "Data storage, measurement and storage"
+title: "Data, measurement and storage"
 author: "Awhy"
 date: "14/01/2020"
 output: pdf_document
@@ -30,5 +30,7 @@ HumanAttribute <- c(Genotype, Temperature, SocioEconomicStatus, Gender, IncomeLe
 AttributeDataFrame <- data.frame(HumanInteractions,HumanAttribute)
 
 
+## Exporting as CSV
+write.table(AttributeDataFrame, file= "Data.csv",row.names=FALSE sep=",")
 
 ```
