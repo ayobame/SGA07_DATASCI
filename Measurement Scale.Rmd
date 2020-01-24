@@ -20,11 +20,11 @@ Gender <- c('Trans')
 IncomeLevel <- c('Mid-range')
 CreditScore <- c('Very Good')
 Race <- c('Black')
-SatisfactionRating <- c('Satisfied') 
+SatisfactionRating <- c('Satisfied')
 Weight <- c(150)
 PoliticalParty <- c('Republican')
 
-HumanAttribute <- c(Genotype, Temperature, SocioEconomicStatus, Gender, IncomeLevel, CreditScore, 
+HumanAttribute <- c(Genotype, Temperature, SocioEconomicStatus, Gender, IncomeLevel, CreditScore,
                     Race, SatisfactionRating, Weight, PoliticalParty)
 
 AttributeDataFrame <- data.frame(HumanInteractions,HumanAttribute)
