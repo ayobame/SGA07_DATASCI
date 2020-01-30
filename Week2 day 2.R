@@ -35,4 +35,4 @@ ggplot(data = skill_table, aes(x= Skills , y= Score)) +
         axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
 
 ```
-!{Awhys Profile}(Awhys_Profile.png)
+!{'Awhys Profile'}(Awhys_Profile.png)

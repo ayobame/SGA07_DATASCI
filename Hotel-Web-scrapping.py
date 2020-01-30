@@ -19,17 +19,17 @@ response = requests.request("GET", url, headers=headers)
 # parse the downloaded data
 data = BeautifulSoup(response.text, 'html.parser')
 
-# print(data)
+print(data)
 
 # find all the sections with specifiedd class name
 cards_data = data.find_all('div', attrs={'class', 'width100 fl htlListSeo hotel-tile-srp-container hotel-tile-srp-container-template new-htl-design-tile-main-block'})
 
-# total number of cards
+total number of cards
 print('Total Number of Cards Found : ', len(cards_data))
 
-# source code of hotel cards
-# for card in cards_data:
-#     print(card)
+source code of hotel cards
+for card in cards_data:
+    print(card)
 
 # extract the hotel name and price per room
 for card in cards_data:
