@@ -1,0 +1,234 @@
+                         ---
+title: "House Sale Data"
+author: "Awhy"
+date: "11/02/2020"
+output: pdf_document: default
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(error = TRUE)
+
+```
+```{r}
+require(pacman)
+pacman::p_load(ggplot2, ggvis, plyr,tidyverse, data.table, lubridate, cowplot, corrplot, lubridate,markdown)
+
+```
+## R Markdown
+```{r df}
+
+df<- read.csv(file = "train.csv", stringsAsFactors = FALSE, header = TRUE)
+
+```
+```{r}
+head (df)
+
+dfw <- df[,c(3,4,5,6,10,13,14,16,17,19,20,41,42,54,74,79,81 )]
+head(dfw) 
+
+```
+```{r}
+na.cols <- which(colSums(is.na(dfw)) > 0)
+na.cols <- sort(colSums(sapply(dfw[na.cols], is.na)), decreasing = TRUE)
+paste('There are', length(na.cols), 'columns with missing values')
+na.cols
+dfw.MedLF <- median(dfw$LotFrontage, na.rm = TRUE)
+dfw.MedLF
+dfw[is.na(dfw$LotFrontage), "LotFrontage"] <- dfw.MedLF
+head(dfw$LotFrontage) 
+
+```
+###################################################
+#### Basic Exploratory Data Analysis
+###################################################
+### what constitute our data/ characteristics of the data
+```{r, echo= FALSE}
+dim(dfw)
+colnames(dfw)
+str(dfw)
+summary(dfw)
+
+dfw$Yearsold <- 2020-dfw$YearBuilt
+dfwmsz <- as.data.frame(dfw$MSZoning)
+dfwlf <- as.data.frame(dfw$LotFrontage)
+dfwlta <- as.data.frame(dfw$LotArea)
+dfwStreet <- as.data.frame(dfw$Street)
+dfwu <- as.data.frame(dfw$Utilities)
+dfwn <- as.data.frame(dfw$Neighborhood)
+dfwc <- as.data.frame(dfw$Condition1)
+dfwbt <- as.data.frame(dfw$BldgType)
+dfwhs <- as.data.frame(dfw$HouseStyle)
+dfwoc <- as.data.frame(dfw$OverallCond)
+dfwhqc <- as.data.frame(dfw$HeatingQC)
+dfwca <- as.data.frame(dfw$CentralAir)
+dfwkq <- as.data.frame(dfw$KitchenQual)
+dfwfence <- as.data.frame(dfw$Fence)
+dfwst <- as.data.frame(dfw$SaleType)
+dfwsp <- as.data.frame(dfw$SalePrice)
+min(dfw$Yearsold)
+max(dfw$Yearsold)
+dfw$ygrp <- cut(dfw$Yearsold, seq(10,148, 10))
+head (dfw$ygrp) 
+```
+#### correlation
+### get numeric columns
+
+```{r, echo=FALSE}
+
+plot (dfwmsz, xlab = "MSZoning: Identifies the general zoning classification of the sale.")
+
+
+```
+###MSZoning: Identifies the general zoning classification of the sale.
+ ###RL =	Residential Low Density house most of the houses
+```{r, echo= FALSE}
+plot (dfwlf, xlab = "Linear feet of street connected to property")
+
+```
+###LotFrontage: Linear feet of street connected to property
+```{r, echo= FALSE}
+plot (dfwlta, xlab = "LotArea: Lot size in square feet")
+
+```
+```{r, echo= FALSE}
+plot (dfwStreet, xlab = "Street: Type of road access to property")
+
+```
+##Street: Type of road access to property (Grvl=Gravel,Pave =	Paved)
+```{r, echo= FALSE}
+plot (dfwu, xlab = "Utilities: Type of utilities available")
+
+```
+
+###Utilities: Type of utilities available
+		###(AllPub	All public Utilities (E,G,W,& S)	
+       ###NoSewr	= Electricity, Gas, and Water (Septic Tank)
+       ###NoSeWa	= Electricity and Gas Only, ELO=	Electricity only)	
+```{r, echo=FALSE}
+plot (dfwn, xlab = "Neighborhood: Physical locations within Ames city limits")
+
+```
+###Neighborhood: Physical locations within Ames city limits
+###(Blmngtn = Bloomington Heights,Blueste =	Bluestem,BrDale	= Briardale, BrkSide=Brookside, 
+###ClearCr =	Clear Creek, CollgCr= College Creek, Crawfor =	Crawford, Edwards=Edwards, ###Gilbert=Gilbert,IDOTRR=Iowa DOT and Rail Road, MeadowV=Meadow Village, Mitchel=Mitchell, ###Names=North Ames, NoRidge=Northridge, NPkVill=Northpark Villa, NridgHt=Northridge ###Heights,NWAme=Northwest Ames, OldTown = Old Town, SWISU=South & West of Iowa State University, ###Sawyer, SawyerW	= Sawyer West, Somerst	= Somerset, StoneBr =	Stone Brook, Timber	= Timberland,	###Veenker)
+```{r, echo=FALSE}
+plot (dfwc, xlab = "Condition1: Proximity to various conditions")
+```
+###Condition1: Proximity to various conditions
+###(Artery	Adjacent to arterial street,Feedr	Adjacent to feeder street, Norm	Normal, RRNn	Within ###200'of North-South Railroad, RRAn	Adjacent to North-South Railroad, PosN	Near positive off-site ###feature--park, greenbelt, etc., PosA	Adjacent to postive off-site feature, RRNe	Within 200' of ###East-West Railroad, RRAe	Adjacent to East-West Railroad)
+```{r, echo=FALSE}
+plot (dfwbt, xlab = "BldgType: Type of dwelling")
+
+```
+###BldgType: Type of dwelling
+###1Fam	Single-family Detached	
+###2FmCon	Two-family Conversion; originally built as one-family dwelling
+###Duplx	Duplex
+###TwnhsE	Townhouse End Unit
+###TwnhsI	Townhouse Inside Unit
+```{r, echo=FALSE}
+plot (dfwhs, xlab = "HouseStyle: Style of dwelling")
+
+```
+###HouseStyle: Style of dwelling
+###1Story	One story
+###1.5Fin	One and one-half story: 2nd level finished
+###1.5Unf	One and one-half story: 2nd level unfinished
+###2Story	Two story
+###2.5Fin	Two and one-half story: 2nd level finished
+###2.5Unf	Two and one-half story: 2nd level unfinished
+###SFoyer	Split Foyer
+###SLvl	Split Level
+```{r, echo=FALSE}
+plot (dfwoc, xlab = "OverallCond: Rates the overall condition of the house")
+
+```
+###OverallCond: Rates the overall condition of the house
+###10	Very Excellent
+###9	Excellent
+###8	Very Good
+###7	Good
+###6	Above Average	
+###5	Average
+###4	Below Average	
+###3	Fair
+###2	Poor
+###1	Very Poor
+```{r, echo=FALSE}
+plot (dfwhqc, xlab = "HeatingQC: Heating quality and condition")
+
+```
+###HeatingQC: Heating quality and condition
+### Ex	Excellent
+### Gd	Good
+### TA	Average/Typical
+### Fa	Fair
+### Po	Poor
+```{r, echo=FALSE}
+plot (dfwca, xlab = "CentralAir: Central air conditioning")
+
+```
+###CentralAir: Central air conditioning
+###       N	No
+###       Y	Yes
+```{r, echo=FALSE}
+plot (dfwkq, xlab = "KitchenQual: Kitchen quality")
+
+```
+###KitchenQual: Kitchen quality
+###Ex	Excellent
+###Gd	Good
+###TA	Typical/Average
+###Fa	Fair
+###Po	Poor
+```{r, echo=FALSE}
+plot (dfwfence, xlab = "Fence: Fence quality")
+
+```
+###Fence: Fence quality
+###GdPrv	Good Privacy
+###MnPrv	Minimum Privacy
+###GdWo	Good Wood
+###MnWw	Minimum Wood/Wire
+####NA	No Fence
+```{r}
+plot (dfwst, xlab = "SaleType: Type of sale")
+
+```
+###SaleType: Type of sale
+###WD 	Warranty Deed - Conventional
+###CWD	Warranty Deed - Cash
+###VWD	Warranty Deed - VA Loan
+###New	Home just constructed and sold
+###COD	Court Officer Deed/Estate
+###Con	Contract 15% Down payment regular terms
+###ConLw	Contract Low Down payment and low interest
+###ConLI	Contract Low Interest
+###ConLD	Contract Low Down
+###Oth	Other
+```{r}
+plot (dfwsp, xlab = "SalePrice")
+
+```
+###Cost of Selling
+```{r}
+plot(dfw$ygrp, xlab = " Amount of Years")
+
+```
+### The age of the building
+```{r, echo=FALSE}
+ggplot(dfw, aes(x=SalePrice)) +
+  theme_bw() + 
+  geom_histogram(bins = 20) +
+  labs ( y="Count ", 
+        x = "Sales Price")
+
+#Sale Price by 10 years grouping
+ggplot(data=dfw, aes(x=ygrp, y=SalePrice)) +
+  geom_bar(stat="identity")
+
+#Sale Price by street
+ggplot(data=dfw, aes(x= Street, y=SalePrice)) +
+  geom_bar(stat="identity")
+
+```
