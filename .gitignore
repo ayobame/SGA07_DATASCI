@@ -11,3 +11,5 @@ R/.Rproj.user/shared/notebooks/paths
 R/R.Rproj
 twitter_credentials.json
 twitter-api.py
+*.driveupload
+*.csv
