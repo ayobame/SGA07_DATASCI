@@ -8,7 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(pacman)
-pacman::p_load()
+pacman::p_load(dplyr,lubridate)
 ```
 ## Group Task 1
 ###The goal of the group task is to apply data science tools and techniques to improve a lending business. 
@@ -27,7 +27,10 @@ AllLoansApplicationDf <- read.csv('all_loans_application.csv')
 AllTransactionsDigitalDf <- read.csv('all_transactions_digital.csv')
 BureauScoreDf <- read.csv('bureau_score.csv')
 
-factor(AllAccountsDf)
+str(AllAccountsDf)
+str(AllBalancesDf)
+AllBalancesDf$VAL_DT <- mdy( as.character(AllBalancesDf$VAL_DT) )
+str(AllDemographicsDf)
 
 ```
 
