@@ -20,6 +20,14 @@ pacman::p_load()
 ```{r}
 AllAccountsDf <- read.csv('all_accounts.csv')
 AllBalancesDf <- read.csv('all_balances.csv')
+AllDemographicsDf <- read.table('all_demographics.csv', stringsAsFactors = FALSE, sep = '|', header = TRUE)
+AllInvestmentsDf <- read.csv('all_investments.csv')
+AllLoansDf <- read.csv('all_loans.csv')
+AllLoansApplicationDf <- read.csv('all_loans_application.csv')
+AllTransactionsDigitalDf <- read.csv('all_transactions_digital.csv')
+BureauScoreDf <- read.csv('bureau_score.csv')
+
+factor(AllAccountsDf)
 
 ```
 
