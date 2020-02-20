@@ -133,3 +133,4 @@ basefit <- lm(train$mpg~ train$cyl+ train$disp + train$wt + train$hp)
 basefit
 summary(basefit)
 plot(basefit)
+

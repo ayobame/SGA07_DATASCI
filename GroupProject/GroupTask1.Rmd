@@ -1,0 +1,27 @@
+---
+title: "GroupTask"
+author: "Group1"
+date: "20/02/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pacman)
+pacman::p_load()
+```
+## Group Task 1
+###The goal of the group task is to apply data science tools and techniques to improve a lending business. 
+<!-- The two major use cases of the tasks include; Build a predictive model that can -->
+<!-- classify a loan application as performing or non-performing Develop an -->
+<!-- alternative credit scoring framework -->
+<!-- Key areas to divide responsibilities: Data Visualisation, Data Modelling, Data -->
+<!-- Preprocessing -->
+```{r}
+AllAccountsDf <- read.csv('all_accounts.csv')
+AllBalancesDf <- read.csv('all_balances.csv')
+
+```
+
+
+

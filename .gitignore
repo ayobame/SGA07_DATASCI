@@ -12,4 +12,41 @@ R/R.Rproj
 twitter_credentials.json
 twitter-api.py
 *.driveupload
-*.csv
+Tweets/@liverpoolfc_tweets.csv
+Tweets/_otse_tweets.csv
+Tweets/ayobame_tweets.csv
+Tweets/fact_tweets.csv
+Tweets/hotels_data.csv
+Tweets/iamsimonchidi_tweets.csv
+Tweets/officialnairam1_tweets.csv
+Tweets/jxndu_tweets.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cz0nw91evt0ty/00000e.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/ctamev8d8maz2/000002.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c5domvewhrkor/00000b.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c5ufka1lmbghk/000018.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c5n4r8ovkzbh3/00000a.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c7ytae8ya1q1n/000006.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c8ke2jitp88ab/000002.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cf57r79fl8gfi/000002.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/ch181lf57m5i9/000006.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cdmvmusyvk01s/00000c.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/ctamev8d8maz2/000004.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cgh9d4q9zm1ju/000002.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c5ufka1lmbghk/00001a.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c7ytae8ya1q1n/000008.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cue1kjccwpknj/000008.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/cxzmlmxedln1m/000004.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/csetup_chunk/000008.csv
+R/.Rproj.user/shared/notebooks/B89C6A1D-Week 6 day 1/1/s/c5n4r8ovkzbh3/000008.csv
+GroupProject/.vs/slnx.sqlite
+GroupProject/.vs/Group Project/v16/.suo
+GroupProject/.vs/VSWorkspaceState.json
+GroupProject/all_accounts.csv
+GroupProject/all_balances.csv
+GroupProject/all_demographics.csv
+GroupProject/all_investments.csv
+GroupProject/all_loans.csv
+GroupProject/all_loans_application.csv
+GroupProject/all_transactions_digital.csv
+GroupProject/bureau_score.csv
+GroupProject/dictionary.csv
