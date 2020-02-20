@@ -124,6 +124,12 @@ fitam <- lm(train$mpg~train$am)
 fitvs <- lm(train$mpg~train$vs)
 
 ## Multiple regression
-So
 
+library(Boruta)
+boruta_output <- Boruta(mpg ~ ., data=na.omit(mtcars), doTrace=2) 
+plot(boruta_output)
 
+basefit <- lm(train$mpg~ train$cyl+ train$disp + train$wt + train$hp)
+basefit
+summary(basefit)
+plot(basefit)
