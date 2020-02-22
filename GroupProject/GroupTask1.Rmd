@@ -8,7 +8,8 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(pacman)
-pacman::p_load(dplyr,lubridate)
+pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dplyr)
+
 ```
 ## Group Task 1
 ###The goal of the group task is to apply data science tools and techniques to improve a lending business. 
@@ -18,21 +19,54 @@ pacman::p_load(dplyr,lubridate)
 <!-- Key areas to divide responsibilities: Data Visualisation, Data Modelling, Data -->
 <!-- Preprocessing -->
 ```{r}
+### All loans df
+AllLoans <- fread('all_loans.csv', stringsAsFactors = T, drop = c('PRODUCT_NAME', 'CURRENCY'))
+Alloansdf <- aggregate(AllLoans$AMOUNT_FINANCED, by = list(CUSTOMER_UNIQUE_ID = AllLoans$CUSTOMER_UNIQUE_ID), FUN = sum)
+
+### All loans application
+AllLoansApplication <- fread('all_loans_application.csv', drop = c('OFFERID','APPLICATION_STATUS', 'MODULE'))
+
+### All transaction digital imported in
+AllTransactionsDigital <- fread('all_transactions_digital.csv', select = c('CUSTOMER_UNIQUE_ID','MASKED_ACCT','LCY_AMOUNT'))
+ATdf <- aggregate( AllTransactionsDigital$LCY_AMOUNT, by=list(CUSTOMER_UNIQUE_ID= AllTransactionsDigital$CUSTOMER_UNIQUE_ID), FUN=sum)
+
+
 AllAccountsDf <- read.csv('all_accounts.csv')
 AllBalancesDf <- read.csv('all_balances.csv')
 AllDemographicsDf <- read.table('all_demographics.csv', stringsAsFactors = FALSE, sep = '|', header = TRUE)
 AllInvestmentsDf <- read.csv('all_investments.csv')
-AllLoansDf <- read.csv('all_loans.csv')
-AllLoansApplicationDf <- read.csv('all_loans_application.csv')
-AllTransactionsDigitalDf <- read.csv('all_transactions_digital.csv')
-BureauScoreDf <- read.csv('bureau_score.csv')
 
-str(AllAccountsDf)
-str(AllBalancesDf)
-AllBalancesDf$VAL_DT <- mdy( as.character(AllBalancesDf$VAL_DT) )
-str(AllDemographicsDf)
+
+
+BureauScore <- read.csv('bureau_score.csv')
+
+ddply(AllAccountsDf, "Species", summarise, 
+  wmn = weighted.mean(Sepal.Length, Petal.Length),
+  mn = mean(Sepal.Length))
+
+
+# glimpse(AllAccountsDf)
+# str(AllAccountsDf)
+# str(AllBalancesDf)
+# AllBalancesDf$VAL_DT <- mdy( as.character(AllBalancesDf$VAL_DT) )
+# str(AllDemographicsDf)
 
 ```
 
 
+```{r}
+
+df <- left_join(AllAccountsDf, AllBalancesDf, by = c('MASKED_ACCOUNT','CUSTOMER_UNIQUE_ID'))
+df <- left_join(df, AllDemographicsDf, by = 'CUSTOMER_UNIQUE_ID')
+df <- left_join(df, AllInvestmentsDf,by = c('CUSTOMER_UNIQUE_ID','MASKED_ACCOUNT') )
+
+glimpse(df)
+ncol(df)
+```
+
+we have 29,057
+
+```{sql connection= con,envir = globalenv(), output.var='AllBalancesDf1'}
+SELECT *from AllBalancedf
+```
 
