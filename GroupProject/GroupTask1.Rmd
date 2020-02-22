@@ -8,7 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(pacman)
-pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dplyr)
+pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dply)
 
 ```
 ## Group Task 1
@@ -20,17 +20,19 @@ pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dplyr)
 <!-- Preprocessing -->
 ```{r}
 ### All loans df
-AllLoans <- fread('all_loans.csv', stringsAsFactors = T, drop = c('PRODUCT_NAME', 'CURRENCY'))
-Alloansdf <- aggregate(AllLoans$AMOUNT_FINANCED, by = list(CUSTOMER_UNIQUE_ID = AllLoans$CUSTOMER_UNIQUE_ID), FUN = sum)
-
+AllLoans <- fread('all_loans.csv', stringsAsFactors = F, drop = c('PRODUCT_NAME', 'CURRENCY'))
+AllLoansdf <- AllLoans %>% group_by(CUSTOMER_UNIQUE_ID) %>% filter(BOOK_DATE == max(BOOK_DATE))
 ### All loans application
 AllLoansApplication <- fread('all_loans_application.csv', drop = c('OFFERID','APPLICATION_STATUS', 'MODULE'))
+AllLoansAppdf <- AllLoansApplication %>% group_by(CUSTOMER_UNIQUE_ID) %>% filter(DATE_OF_APPLY
+ == max(DATE_OF_APPLY))
 
 ### All transaction digital imported in
 AllTransactionsDigital <- fread('all_transactions_digital.csv', select = c('CUSTOMER_UNIQUE_ID','MASKED_ACCT','LCY_AMOUNT'))
+
 ATdf <- aggregate( AllTransactionsDigital$LCY_AMOUNT, by=list(CUSTOMER_UNIQUE_ID= AllTransactionsDigital$CUSTOMER_UNIQUE_ID), FUN=sum)
 
-
+### All Accounts
 AllAccountsDf <- read.csv('all_accounts.csv')
 AllBalancesDf <- read.csv('all_balances.csv')
 AllDemographicsDf <- read.table('all_demographics.csv', stringsAsFactors = FALSE, sep = '|', header = TRUE)
@@ -40,9 +42,9 @@ AllInvestmentsDf <- read.csv('all_investments.csv')
 
 BureauScore <- read.csv('bureau_score.csv')
 
-ddply(AllAccountsDf, "Species", summarise, 
-  wmn = weighted.mean(Sepal.Length, Petal.Length),
-  mn = mean(Sepal.Length))
+# ddply(AllAccountsDf, "Species", summarise, 
+#   wmn = weighted.mean(Sepal.Length, Petal.Length),
+#   mn = mean(Sepal.Length))
 
 
 # glimpse(AllAccountsDf)
