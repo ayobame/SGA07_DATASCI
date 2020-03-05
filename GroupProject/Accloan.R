@@ -13,6 +13,8 @@ Loanas <- Loans %>% group_by(ACCOUNT_STATUS) %>%
   summarise(count = n()) %>% 
   arrange(desc(count))
 view(Loanas)
+barplot(Loanas$count, xlab = 'count',ylab = 'Account')
+geom_bar(Loanas$count, Loanas$ACCOUNT_STATUS, aes(x,))
 
 ### count by date
 Loandt <- Loans %>% group_by()
