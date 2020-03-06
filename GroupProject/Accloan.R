@@ -77,20 +77,14 @@ count(Loanas, Loanas$count)
 ### 3 L                  28637
 ### 4 V                  249621
 
-ggplot(Loanpc, aes(PRODUCT_CODE ,count)) + geom_col() + theme_classic()
+### Account Status Value
+ggplot(Loanas, aes(ACCOUNT_STATUS ,count)) + geom_col() + theme_classic()
 
-barplot(Loanas$count, xlab = 'count',ylab = 'Account')
-geom_bar(Loanas$count, Loanas$ACCOUNT_STATUS, aes(x,))
-
-### count by date
-Loandt <- Loans %>% group_by()
-
-plot(Loanas$ACCOUNT_STATUS, Loanas$count, xlab = 'Account',ylab = 'count')
-
+###
 AllLoansagg <- AllLoans %>% aggregate(by = list(CUSTOMER_UNIQUE_ID = CUSTOMER_UNIQUE_ID),FUN=sum)
 
 
-AllLoansdff <- AllLoans %>% 
+LoansdF <- AllLoans %>% 
   group_by(CUSTOMER_UNIQUE_ID) %>%
   filter(BOOK_DATE == max(BOOK_DATE))
 

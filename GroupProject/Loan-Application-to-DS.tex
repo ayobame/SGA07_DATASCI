@@ -1,0 +1,115 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Loan Application to DS},
+  pdfauthor={Jindu, Eyo, Awhy},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Loan Application to DS}
+\author{Jindu, Eyo, Awhy}
+\date{06/03/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+\hypertarget{the-goal-of-this-report-seeks-to-apply-data-science-techniques-to-determine-how-derived-insight-can-help-benefit-a-lending-business.}{%
+\subsubsection{The goal of this report seeks to apply data science
+techniques to determine how derived insight can help benefit a lending
+business.}\label{the-goal-of-this-report-seeks-to-apply-data-science-techniques-to-determine-how-derived-insight-can-help-benefit-a-lending-business.}}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+\hypertarget{the-nigerian-lending-space-is-ripe-with-amazing-potentials-given-its-reception-and-the-competitive-rates-available-to-meet-the-diverse-monetary-needs-of-a-wide-array-of-customers.-using-data-science-exploratory-data-analysis-and-a-data-set-from-one-of-nigerians-leading-banks-our-objective-will-be-to-analyze-this-data-in-order-to-provide-answers-the-following-questions-which-seeks-to-benefit-the-banks-lending-business.}{%
+\subsubsection{The Nigerian Lending space is ripe with amazing
+potentials given its reception and the competitive rates available to
+meet the diverse monetary needs of a wide array of customers. Using data
+science, exploratory data analysis and a data set from one of Nigerian's
+leading banks, our objective will be to analyze this data in order to
+provide answers the following questions which seeks to benefit the
+bank's lending
+business.}\label{the-nigerian-lending-space-is-ripe-with-amazing-potentials-given-its-reception-and-the-competitive-rates-available-to-meet-the-diverse-monetary-needs-of-a-wide-array-of-customers.-using-data-science-exploratory-data-analysis-and-a-data-set-from-one-of-nigerians-leading-banks-our-objective-will-be-to-analyze-this-data-in-order-to-provide-answers-the-following-questions-which-seeks-to-benefit-the-banks-lending-business.}}
+
+\textbf{- What does the loan data distribution for the bank look like?}
+Using data science we will illustrate the most important aspects related
+to the loans and perform EDA
+
+\textbf{- Are the loan grades from the bank optimal?} Loan grades
+measure the likelihood of a client to incur a default, hence crucial for
+the bank's profitablility. So perhaps if we could build a predictive
+model that can classify loans applications as performing or
+non-performing and compare against the already existing data on loan
+performance we could measure optimality of the model to predict if a
+loan application is likely to default.
+
+\textbf{- Can we create an alternative credit scoring framework?}
+
+\hypertarget{data-preparation-and-preprocessing}{%
+\subsection{Data Preparation and
+Preprocessing}\label{data-preparation-and-preprocessing}}
+
+\textbf{Data source:} Awaiting permission\ldots{}
+
+\textbf{Featured Tools}: R, python \#\#\# Dataset link -
+\url{https://drive.google.com/open?id=1nkPgxBI2yWlSmLN1syA3yDEKXkPFrUKS}
+\#\#\# \url{https://github.com/jindukwentua/SGA07_DATASCI}
+
+\end{document}
