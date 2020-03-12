@@ -1,0 +1,161 @@
+---
+title: "EDA"
+author: "Jindu, Eyo, Awhy"
+date: "09/03/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(pacman)
+pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dplyr, corrplot, cowplot, purrr,skimr, stringr, forcats, reprex,magrittr)
+
+```
+
+## Importing **all loans** data set
+
+```{r }
+Loans <- fread('all_loans.csv', stringsAsFactors = F, drop = c('PRODUCT_NAME', 'LOAN_REF', 'CURRENCY'))
+View(Loans)
+
+```
+
+## Glimpse into **All Loans**
+
+```{r Loans, echo=FALSE}
+dim(Loans)
+names(Loans)
+glimpse(Loans)
+skim(Loans)
+```
+
+### handling NAs
+```{r}
+Loans$BOOK_DATE <- as.character(Loans$BOOK_DATE)
+Loans$MATURITY_DATE <- as.character(Loans$MATURITY_DATE)
+Loans %>% 
+  na_if(" ")
+Loans %>% 
+  map_df(~sum(is.na(.)))
+
+
+```
+## Measures
+```{r}
+
+range(Loans$AMOUNT_FINANCED)  
+### min = 0.1 
+### max value = 540484208.6
+mean(Loans$AMOUNT_FINANCED) 
+### Mean = 40671.22
+var(Loans$AMOUNT_FINANCED)
+### Variance = 1.718835e+12
+sd(Loans$AMOUNT_FINANCED)
+### Standard Deviation = 1311044
+### 278505 Rows and 7 COlumns
+```
+
+## Converting Character to date 
+```{r}
+
+Loans$BOOK_DATE <- mdy(Loans$BOOK_DATE)
+Loans$MATURITY_DATE <- mdy(Loans$MATURITY_DATE)
+Loans$BookedYear <- year(Loans$BOOK_DATE)
+```
+
+### Plot by year booking
+```{r BookedPlot,   echo=FALSE}
+BookedPlot <- ggplot(Loans, aes(BookedYear)) + geom_bar()
+BookedPlot
+```
+
+### COunt Loans taken by year
+```{r}
+count(Loans, BookedYear)
+
+```
+
+```{r}
+### Counts by Product Code
+Loanpc <- Loans %>% 
+  count(PRODUCT_CODE) %>% 
+  mutate(PRODUCT_CODE= fct_reorder(PRODUCT_CODE,n))   #arrange(count)
+view(Loanpc)
+ProductC <- count(Loans,PRODUCT_CODE)
+ProductC
+ggplot(Loanpc, aes(PRODUCT_CODE ,n)) + geom_col() +coord_flip() + theme_classic()
+
+```
+
+```{r}
+Loanas <- Loans %>% group_by(ACCOUNT_STATUS) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count))
+view(Loanas)
+count(Loanas, ACCOUNT_STATUS )
+count(Loanas, count)
+ggplot(Loanas, aes(ACCOUNT_STATUS ,count)) + geom_col() + theme_classic()
+
+```
+
+<!-- ```{r} -->
+<!-- Loanas %>% -->
+<!-- split(.$ACCOUNT_STATUS) %>% -->
+<!-- map(~ lm( ~ Petal.Length, data = .)) %>% -->
+<!-- map(summary) %>% -->
+<!-- map_dbl("r.squared") -->
+<!-- View(iris) -->
+<!-- ``` -->
+
+#All Loans Application
+
+## Importing All Loans Application
+```{r }
+LoansApp <- fread('all_loans_application.csv', stringsAsFactors = F, drop =c('OFFERID','APPLICATION_STATUS'))
+
+```
+Overview of the data
+```{r}
+View(LoansApp)
+names(LoansApp)
+glimpse(LoansApp)
+skim(LoansApp)
+tail(LoansApp)
+```
+### Checking for NAs
+```{r}
+LoansApp %>% 
+  na_if(" ")
+LoansApp %>% 
+  map_df(~sum(is.na(.)))
+```
+
+```{r}
+LoanAppLs <- LoansApp %>% group_by(LOAN_CLASSIFICATION) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count))
+view(LoanAppLs)
+ggplot(LoanAppLs, aes(LOAN_CLASSIFICATION ,count)) + geom_col() + theme_classic()
+
+```
+
+## Converting Character to date 
+```{r}
+
+LoansApp$DATE_OF_APPLY <- mdy_hms(LoansApp$DATE_OF_APPLY)
+LoansApp$BookedYear <- year(LoansApp$DATE_OF_APPLY)
+
+```
+```{r}
+### Counts by MODULE
+LoansAppMd <- LoansApp %>% 
+  count(MODULE) %>% 
+  mutate(MODULE= fct_reorder(MODULE,n))   #arrange(count)
+view(LoansAppMd)
+ggplot(LoansAppMd, aes(MODULE ,n)) + geom_col() + theme_classic()
+
+```
+
+```{r}
+
+```
+
