@@ -26,20 +26,26 @@ dim(Loans)
 names(Loans)
 glimpse(Loans)
 skim(Loans)
+summary(Loans)
+unique(Loans$PRODUCT_CODE)
 ```
+
+
+
+
+
 
 ### handling NAs
 ```{r}
 Loans$BOOK_DATE <- as.character(Loans$BOOK_DATE)
 Loans$MATURITY_DATE <- as.character(Loans$MATURITY_DATE)
 Loans %>% 
-  na_if(" ")
-Loans %>% 
+  na_if(" ") %>% 
   map_df(~sum(is.na(.)))
-
 
 ```
 ## Measures
+
 ```{r}
 
 range(Loans$AMOUNT_FINANCED)  
@@ -52,9 +58,11 @@ var(Loans$AMOUNT_FINANCED)
 sd(Loans$AMOUNT_FINANCED)
 ### Standard Deviation = 1311044
 ### 278505 Rows and 7 COlumns
+
 ```
 
 ## Converting Character to date 
+
 ```{r}
 
 Loans$BOOK_DATE <- mdy(Loans$BOOK_DATE)
@@ -64,8 +72,26 @@ Loans$BookedYear <- year(Loans$BOOK_DATE)
 
 ### Plot by year booking
 ```{r BookedPlot,   echo=FALSE}
-BookedPlot <- ggplot(Loans, aes(BookedYear)) + geom_bar()
+BookedPlot <- ggplot(Loans, aes(BookedYear)) + geom_bar() + ggtitle('Loans Booked Per year')
 BookedPlot
+
+by2015 = filter(Loans, BookedYear == '2015')
+by2016 = filter(Loans, BookedYear == '2016')
+by2017 = filter(Loans, BookedYear == '2017')
+by2018 = filter(Loans, BookedYear == '2018')
+by2019 = filter(Loans, BookedYear == '2019')
+
+BookedPlot2015 <- ggplot(by2015, aes(ACCOUNT_STATUS)) + geom_bar() + ggtitle('Account Status in 2015')
+BookedPlot2015
+BookedPlot2016 <- ggplot(by2016, aes(ACCOUNT_STATUS)) + geom_bar() + ggtitle('Account Status in 2016')
+BookedPlot2016
+BookedPlot2017 <- ggplot(by2017, aes(ACCOUNT_STATUS)) + geom_bar() + ggtitle('Account Status in 2017')
+BookedPlot2017
+BookedPlot2018 <- ggplot(by2018, aes(ACCOUNT_STATUS)) + geom_bar()+ ggtitle('Account Status in 2018')
+BookedPlot2018
+BookedPlot2019 <- ggplot(by2019, aes(ACCOUNT_STATUS)) + geom_bar() + ggtitle('Account Status in 2019')
+BookedPlot2019
+
 ```
 
 ### COunt Loans taken by year
@@ -79,10 +105,70 @@ count(Loans, BookedYear)
 Loanpc <- Loans %>% 
   count(PRODUCT_CODE) %>% 
   mutate(PRODUCT_CODE= fct_reorder(PRODUCT_CODE,n))   #arrange(count)
-view(Loanpc)
 ProductC <- count(Loans,PRODUCT_CODE)
 ProductC
 ggplot(Loanpc, aes(PRODUCT_CODE ,n)) + geom_col() +coord_flip() + theme_classic()
+
+byAMPC = filter(Loans, PRODUCT_CODE == 'AMPC')
+byAMPCplot <- ggplot(byAMPC, aes(BookedYear)) + geom_bar() + ggtitle('Product code (AMPC)')
+byAMPCplot
+
+byPDLP = filter(Loans, PRODUCT_CODE == 'PDLP')
+byPDLPplot <- ggplot(byPDLP, aes(BookedYear)) + geom_bar() + ggtitle('Product code (PDLP)')
+byPDLPplot
+
+bySTPL = filter(Loans, PRODUCT_CODE == 'STPL')
+bySTPLplot <- ggplot(bySTPL, aes(BookedYear)) + geom_bar() + ggtitle('Product code (STPL)')
+bySTPLplot
+
+bySADV = filter(Loans, PRODUCT_CODE == 'SADV')
+bySADVplot <- ggplot(bySADV, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (SADV)')
+bySADVplot
+
+byDFPS = filter(Loans, PRODUCT_CODE == 'DFPS')
+byDFPSplot <- ggplot(byDFPS, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (DFPS)')
+byDFPSplot
+
+byPDSS = filter(Loans, PRODUCT_CODE == 'PDSS')
+byPDSSplot <- ggplot(byPDSS, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (PDSS)')
+byPDSSplot
+
+byKPLA = filter(Loans, PRODUCT_CODE == 'KPLA')
+bySADVplot <- ggplot(bySADV, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (SADV)')
+bySADVplot
+
+bySCAS = filter(Loans, PRODUCT_CODE == 'SCAS')
+bySCASplot <- ggplot(bySCAS, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (SCAS)')
+bySCASplot
+
+byMPTA = filter(Loans, PRODUCT_CODE == 'MPTA')
+byMPTAplot <- ggplot(byMPTA, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (MPTA)')
+byMPTAplot
+
+bySTLV = filter(Loans, PRODUCT_CODE == 'STLV')
+bySTLVplot <- ggplot(bySTLV, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (STLV)')
+bySTLVplot
+
+byKPLS = filter(Loans, PRODUCT_CODE == 'KPLS')
+byKPLSplot <- ggplot(byKPLS, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (KPLS)')
+byKPLSplot
+
+byAMPD = filter(Loans, PRODUCT_CODE == 'AMPD')
+byAMPDplot <- ggplot(byAMPD, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (AMPD)')
+byAMPDplot
+
+bySTLP = filter(Loans, PRODUCT_CODE == 'STLP')
+bySTLPplot <- ggplot(bySTLP, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (STLP)')
+bySTLPplot
+
+byMPTL = filter(Loans, PRODUCT_CODE == 'MPTL')
+byMPTLplot <- ggplot(byMPTL, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (MPTL)')
+byMPTLplot
+
+byCDMN = filter(Loans, PRODUCT_CODE == 'CDMN')
+byCDMNplot <- ggplot(byCDMN, aes(BookedYear)) + geom_bar()+ ggtitle('Product code (CDMN)')
+byCDMNplot
+
 
 ```
 
@@ -115,11 +201,13 @@ LoansApp <- fread('all_loans_application.csv', stringsAsFactors = F, drop =c('OF
 ```
 Overview of the data
 ```{r}
+unique(LoansApp$MODULE)
 View(LoansApp)
 names(LoansApp)
 glimpse(LoansApp)
 skim(LoansApp)
 tail(LoansApp)
+summary(LoansApp)
 ```
 ### Checking for NAs
 ```{r}
@@ -135,6 +223,12 @@ LoanAppLs <- LoansApp %>% group_by(LOAN_CLASSIFICATION) %>%
   arrange(desc(count))
 view(LoanAppLs)
 ggplot(LoanAppLs, aes(LOAN_CLASSIFICATION ,count)) + geom_col() + theme_classic()
+perfoming <- filter(LoansApp, LOAN_CLASSIFICATION == 'PERFORMING')
+
+unique(LoansApp$LOAN_CLASSIFICATION) 
+View(perfoming)
+ggplot(perfoming, aes(perfoming$MODULE))+ geom_bar()
+
 
 ```
 
@@ -145,6 +239,7 @@ LoansApp$DATE_OF_APPLY <- mdy_hms(LoansApp$DATE_OF_APPLY)
 LoansApp$BookedYear <- year(LoansApp$DATE_OF_APPLY)
 
 ```
+
 ```{r}
 ### Counts by MODULE
 LoansAppMd <- LoansApp %>% 
@@ -152,6 +247,61 @@ LoansAppMd <- LoansApp %>%
   mutate(MODULE= fct_reorder(MODULE,n))   #arrange(count)
 view(LoansAppMd)
 ggplot(LoansAppMd, aes(MODULE ,n)) + geom_col() + theme_classic()
+
+```
+
+```{r}
+hist(LoansApp$APPLIED_AMOUNT)
+hist(LoansApp$INCR_ALLOWED)
+ggplot(LoansApp, aes(INCR_ALLOWED)) +  geom_area(stat = "bin")
+ggplot(LoansApp, aes(APPLIED_AMOUNT)) + geom_area(stat = 'bin')
+
+```
+
+###https://www.investopedia.com/terms/c/credit_score.asp 
+### https://www.investopedia.com/terms/f/five-c-credit.asp
+### https://www.investopedia.com/terms/f/financial-literacy.asp
+### 
+
+```{r}
+BookedAppPlot <- ggplot(LoansApp, aes(BookedYear)) + geom_bar()
+BookedAppPlot
+
+```
+```{r}
+count(LoansApp, BookedYear)
+```
+
+```{r}
+demographics <- fread('all_demographics.csv', stringsAsFactors = F, select = c('CUSTOMER_UNIQUE_ID', 'CUSTOMER_TYPE', 'CUSTOMER_CATEGORY', 'CUSTOMER_PREFIX', 'LIAB_BR','CIF_CREATION_DATE','DATE_OF_BIRTH','SEX','MARITAL_STATUS'))
+View(demographics)
+names(demographics)
+unique(demographics$SEX)
+unique(demographics$MARITAL_STATUS)
+unique(demographics$CUSTOMER_PREFIX)
+unique(demographics$CUSTOMER_TYPE)
+unique(demographics$CUSTOMER_CATEGORY)
+
+```
+
+```{r}
+invest <- fread('all_investments.csv', stringsAsFactors = F, drop = c('CONTRACT_REF_NO'))
+view(invest)
+```
+
+```{r}
+digitaltrans <- fread('all_transactions_digital.csv', stringsAsFactors = F, drop = c("DRCR_IND","TRN_REF_NO","FCY_AMOUNT","EXCH_RATE"))
+  
+View(digitaltrans)
+names(digitaltrans)
+unique(digitaltrans)
+```
+
+```{r}
+
+```
+
+```{r}
 
 ```
 
