@@ -13,7 +13,7 @@ pacman::p_load(data.table,tidyverse,lubridate,ggplot2, dplyr, corrplot, cowplot,
 
 ## Importing **all loans** data set
 
-```{r }
+```{r, echo=FALSE }
 Loans <- fread('all_loans.csv', stringsAsFactors = F, drop = c('PRODUCT_NAME', 'LOAN_REF', 'CURRENCY'))
 View(Loans)
 
@@ -68,6 +68,7 @@ sd(Loans$AMOUNT_FINANCED)
 Loans$BOOK_DATE <- mdy(Loans$BOOK_DATE)
 Loans$MATURITY_DATE <- mdy(Loans$MATURITY_DATE)
 Loans$BookedYear <- year(Loans$BOOK_DATE)
+
 ```
 
 ### Plot by year booking
@@ -225,12 +226,18 @@ view(LoanAppLs)
 ggplot(LoanAppLs, aes(LOAN_CLASSIFICATION ,count)) + geom_col() + theme_classic()
 perfoming <- filter(LoansApp, LOAN_CLASSIFICATION == 'PERFORMING')
 
+nonperforming <- filter(LoansApp, LOAN_CLASSIFICATION =='NON-PERFORMING')
+
 unique(LoansApp$LOAN_CLASSIFICATION) 
 View(perfoming)
 ggplot(perfoming, aes(perfoming$MODULE))+ geom_bar()
 
+hist(perfoming$APPLIED_AMOUNT)
+hist(nonperforming$APPLIED_AMOUNT)
+boxplot(perfoming$APPLIED_AMOUNT)
+boxplot(nonperforming$APPLIED_AMOUNT)
 
-```
+  ```
 
 ## Converting Character to date 
 ```{r}
