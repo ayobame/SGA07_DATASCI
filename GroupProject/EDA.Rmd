@@ -28,12 +28,8 @@ glimpse(Loans)
 skim(Loans)
 summary(Loans)
 unique(Loans$PRODUCT_CODE)
+
 ```
-
-
-
-
-
 
 ### handling NAs
 ```{r}
@@ -237,9 +233,10 @@ hist(nonperforming$APPLIED_AMOUNT)
 boxplot(perfoming$APPLIED_AMOUNT)
 boxplot(nonperforming$APPLIED_AMOUNT)
 
-  ```
+```
 
 ## Converting Character to date 
+
 ```{r}
 
 LoansApp$DATE_OF_APPLY <- mdy_hms(LoansApp$DATE_OF_APPLY)
