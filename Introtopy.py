@@ -83,6 +83,39 @@ c = print(b,' birthday is ',a[b])
 # Question 5: Use the BeautifulSoup and requests Python packages to print out a list of 
 # all the article titles on the New York Times homepage (https://www.nytimes.com). 
 
+"""
+Web Scraping - Beautiful Soup
+"""
+
+# importing required libraries
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# target URL to scrap
+url = "https://www.nytimes.com"
+# headers
+headers = {
+'User-Agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
+    }
+# send request to download the data
+response = requests.request("GET", url, headers=headers)
+# parse the downloaded data
+data = BeautifulSoup(response.text, 'html.parser')
+
+print(data)
+
+cards_data = data.find_all('div', attrs={'class', 'css-1ez5fsm esl82me1'})
+
+total number of cards
+print('Total Number of Cards Found : ', len(cards_data))
+
+#source code of Title tags
+for card in cards_data:
+    print(card)
+    # get the headers
+    title_name = card.find('h2', attrs = {'class': 'css-z9cw67 esl82me0'})
+    print(title_name.text)
 
 
 # Question 6: Take the code from the question 5 and instead of printing the results 
